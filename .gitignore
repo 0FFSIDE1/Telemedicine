@@ -1,0 +1,8 @@
+*venv
+venv
+static
+migrations
+__pycache__
+.env
+db_design.drawio.pdf
+db.sqlite3
