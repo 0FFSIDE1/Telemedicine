@@ -15,5 +15,5 @@ class Visit(models.Model):
     pulse = models.DecimalField(default=None, max_digits=10, decimal_places=2, blank=True, null=True)
     visit_status = models.CharField(max_length=20, default=None, blank=False, null=False)
     def __str__(self) -> str:
-        return self.patient.first_name | self.visit_type
+        return f"{self.patient.last_name} | {self.visit_type}"
     
