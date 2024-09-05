@@ -10,5 +10,5 @@ class Ed_visit(models.Model):
     reason_for_visit = models.CharField(max_length=255, default=None, null=False, blank=False)
     disposition = models.CharField(max_length=255, null=False, blank=False, default=None)
     def __str__(self) -> str:
-        return self.patient.first_name | self.visit
+        return f"{self.patient.first_name} | {self.visit}"
     

@@ -10,4 +10,4 @@ class Patient(models.Model):
     language = models.CharField(default=None, max_length=20, null=False, blank=False)
 
     def __str__(self) -> str:
-        return self.first_name | self.last_name
+        return f"{self.first_name} | {self.last_name}"
