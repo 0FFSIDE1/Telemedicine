@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ed_visits',
     'admissions',
     'discharges',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
