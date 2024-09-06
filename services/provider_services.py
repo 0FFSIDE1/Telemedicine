@@ -10,28 +10,8 @@ class ProviderSerializer(serializers.ModelSerializer):
         model = Provider
         fields = '__all__'
     
-class ProviderVisitSerializer(serializers.ModelSerializer):
-    class Meta:  
-        model = Visit
-        fields = [
-'visit_id', 
-'date_of_visit', 
-'date_scheduled', 
-'visit_department_id', 
-'visit_type', 
-'blood_pressure_systolic', 'blood_pressure_diastolic', 
-'pulse', 
-'visit_status', 
-'patient', 
-'provider', 
-]
 
-def create_patient_record(request, data):
-    try:
-        provider = Provider.objects.create(**data)
-        provider.save()
-    except Exception as e:
-        messages.error(request, f'{e}')
+
 
 
 

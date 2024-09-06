@@ -20,7 +20,7 @@ class AllVisitsView(generics.ListCreateAPIView):
     serializer_class = VisitSerializer
     
     
-class VisitView(generics.RetrieveUpdateDestroyAPIView):
+class VisitDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
        GET: Retrieves specific visits record
        PUT and PATCH: update visit record
@@ -28,7 +28,7 @@ class VisitView(generics.RetrieveUpdateDestroyAPIView):
        queryset: all column in visit Entity
     """
     queryset = Visit.objects.all()
-    serializer_class = PatientVisitSerializer
+    serializer_class = VisitSerializer
     def get_object(self):
         try:
             return super().get_object()

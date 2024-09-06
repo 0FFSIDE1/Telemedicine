@@ -8,7 +8,7 @@ from rest_framework import generics
 from rest_framework.exceptions import NotFound
 # Create your views here.
 
-class AllProviderView(generics.ListCreateAPIView):
+class AllProvidersView(generics.ListCreateAPIView):
         """
         GET: Retrieves all provider record
         POST: Add new provider record
@@ -17,7 +17,7 @@ class AllProviderView(generics.ListCreateAPIView):
         queryset = Provider.objects.all()
         serializer_class = ProviderSerializer
        
-class ProviderView(generics.RetrieveUpdateDestroyAPIView):
+class ProviderDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
        GET: Retrieves specific provider record
        PUT and PATCH: update provider record

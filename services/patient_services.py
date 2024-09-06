@@ -11,22 +11,6 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = '__all__'
     
-class PatientVisitSerializer(serializers.ModelSerializer):
-    class Meta:  
-        model = Visit
-        fields = [
-            'visit_id', 
-            'date_of_visit',
-            'date_scheduled',
-            'visit_department_id', 
-            'visit_type', 
-            'blood_pressure_systolic', 
-            'blood_pressure_diastolic', 
-            'pulse', 
-            'visit_status', 
-            'patient', 
-            'provider', 
-        ]
 
 def create_patient_record(request, data):
     try:
