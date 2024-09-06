@@ -11,15 +11,9 @@ class ProviderSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 class ProviderVisitSerializer(serializers.ModelSerializer):
-    patient = serializers.SerializerMethodField()
-    provider = serializers.SerializerMethodField()
     class Meta:  
         model = Visit
         fields = ['visit_id', 'date_of_visit', 'date_scheduled', 'visit_department_id', 'visit_type', 'blood_pressure_systolic', 'blood_pressure_diastolic', 'pulse', 'visit_status', 'patient', 'provider', ]
-    def get_patient(self, obj):
-        return obj.patient.first_name
-    def get_provider(self, obj):
-        return obj.provider.first_name
 
 def create_patient_record(request, data):
     try:
