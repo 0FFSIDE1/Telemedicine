@@ -4,8 +4,8 @@ from providers.models import Provider
 # Create your models here.
 class Visit(models.Model):
     visit_id = models.AutoField(primary_key=True, editable=False)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='patient')
-    provider =  models.ForeignKey(Provider, on_delete=models.CASCADE, related_name='provider')
+    patient = models.ForeignKey(Patient, db_column='first_name', on_delete=models.CASCADE, related_name='patient', blank=False, null=False)
+    provider =  models.ForeignKey(Provider, on_delete=models.CASCADE, related_name='provider', blank=False, null=False)
     date_of_visit = models.DateField(default=None, blank=False, null=False)
     date_scheduled =  models.DateField(default=None, null=False, blank=False)
     visit_department_id = models.IntegerField(default=None, null=False, blank=False)
