@@ -18,6 +18,12 @@ class AllPatientView(generics.ListCreateAPIView):
         serializer_class = PatientSerializer
        
 class PatientView(generics.RetrieveUpdateDestroyAPIView):
+    """
+       GET: Retrieves specific patient record
+       PUT and PATCH: update specific patient record
+       DELETE: delete specific patient record
+       queryset: all column in Patient Entity
+    """
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
     def get_object(self):
