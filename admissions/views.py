@@ -42,7 +42,7 @@ class AdmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
        GET: Retrieves specific admission record
        PUT and PATCH: update specific admission record
        DELETE: delete specific admission record
-       queryset: all column in visit Entity
+       queryset: all column in admission Entity
     """
     queryset = Admission.objects.all()
     serializer_class = AdmissionSerializer
