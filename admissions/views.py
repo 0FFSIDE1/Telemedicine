@@ -14,6 +14,7 @@ class AllAdmissionView(generics.ListCreateAPIView):
        GET: Retrieves all Admission record
        POST: Add new Admission record
        queryset: All column in Admission Entity
+       serializer_class: All rows in Admission Entity
     """
     queryset = Admission.objects.all()
     serializer_class = AdmissionSerializer
@@ -43,6 +44,7 @@ class AdmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
        PUT and PATCH: update specific admission record
        DELETE: delete specific admission record
        queryset: all column in admission Entity
+       serializer_class: All rows in Admission Entity
     """
     queryset = Admission.objects.all()
     serializer_class = AdmissionSerializer

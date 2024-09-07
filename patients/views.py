@@ -13,6 +13,7 @@ class AllPatientView(generics.ListCreateAPIView):
         GET: Retrieves all patients record
         POST: Add new patient record
         queryset: All column in Patient Entity
+        serializer_class: All rows in patient Entity
         """
         queryset = Patient.objects.all()
         serializer_class = PatientSerializer
@@ -42,6 +43,7 @@ class PatientView(generics.RetrieveUpdateDestroyAPIView):
        PUT and PATCH: update specific patient record
        DELETE: delete specific patient record
        queryset: all column in Patient Entity
+       serializer_class: All rows in patient Entity
     """
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer

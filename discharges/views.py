@@ -14,6 +14,7 @@ class AllDischargeView(generics.ListCreateAPIView):
        GET: Retrieves all discharge record
        POST: Add new discharge record
        queryset: All column in discharge Entity
+       serializer_class: All rows in discharge Entity
     """
     queryset = Discharge.objects.all()
     serializer_class = DischargeSerializer
@@ -45,6 +46,7 @@ class DischargeDetailView(generics.RetrieveUpdateDestroyAPIView):
        PUT and PATCH: update discharge record
        DELETE: delete/destroy specific discharge record
        queryset: all column in discharge Entity
+       serializer_class: All rows in discharge Entity
     """
     queryset = Discharge.objects.all()
     serializer_class = DischargeSerializer

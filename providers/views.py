@@ -13,6 +13,7 @@ class AllProvidersView(generics.ListCreateAPIView):
         GET: Retrieves all provider record
         POST: Add new provider record
         queryset: All column in Provider Entity
+        serializer_class: All rows in provider Entity
         """
         queryset = Provider.objects.all()
         serializer_class = ProviderSerializer
@@ -41,6 +42,7 @@ class ProviderDetailView(generics.RetrieveUpdateDestroyAPIView):
        PUT and PATCH: update provider record
        DELETE: delete specific provider record
        queryset: all column in Provider Entity
+       serializer_class: all rows provider Entity
     """
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer

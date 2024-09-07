@@ -14,6 +14,7 @@ class AllEd_visitsView(generics.ListCreateAPIView):
        GET: Retrieves all ed_visits record
        POST: Add new ed_visits record
        queryset: All column in ed_visits Entity
+       serializer_class: All rows in ed_visits Entity
     """
     queryset = Ed_visit.objects.all()
     serializer_class = Ed_visitsSerializer
@@ -45,6 +46,7 @@ class Ed_visitsDetailView(generics.RetrieveUpdateDestroyAPIView):
        PUT and PATCH: update ed_visit record
        DELETE: delete/destroy specific ed_visit record
        queryset: all column in ed_visit Entity
+       serializer_class: All rows in ed_visits Entity
     """
     queryset = Ed_visit.objects.all()
     serializer_class = Ed_visitsSerializer
