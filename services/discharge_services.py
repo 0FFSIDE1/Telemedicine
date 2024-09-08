@@ -17,7 +17,7 @@ def All_Discharge_Response_data(discharge, queryset):
     }
     return data
 
-def Create_Discharge_Response_data(discharge, headers):
+def Create_Discharge_Response_data(discharge):
     """Response Data for POST request i.e create new Discharge record"""
     data = {
         "status": "success",
@@ -25,8 +25,7 @@ def Create_Discharge_Response_data(discharge, headers):
         "message": "Discharge record added successfully.",
         "discharge": discharge,
     }
-    header = headers
-    return (data, header)
+    return data
 
 def Retrieve_Discharge_Response_data(discharge):
     """Response Data for GET request i.e single Discharge record"""

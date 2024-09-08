@@ -16,7 +16,7 @@ def All_Ed_visits_Response_data(ed_visits, queryset):
     }
     return data
 
-def Create_Ed_visits_Response_data(ed_visit, headers):
+def Create_Ed_visits_Response_data(ed_visit):
     """Response Data for POST request i.e create new ed_visit record"""
     data = {
         "status": "success",
@@ -24,8 +24,7 @@ def Create_Ed_visits_Response_data(ed_visit, headers):
         "message": "ed_visit record added successfully.",
         "ed_visit": ed_visit,
     }
-    header = headers
-    return (data, header)
+    return data
 
 def Retrieve_Ed_visits_Response_data(ed_visit):
     """Response Data for GET request i.e single ed_visit record"""

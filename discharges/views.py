@@ -14,8 +14,8 @@ class AllDischargeView(generics.ListCreateAPIView):
     """
        GET: Retrieves all discharge record
        POST: Add new discharge record
-       queryset: All column in discharge Entity
-       serializer_class: All rows in discharge Entity
+       queryset: All rows in discharge Entity
+       serializer_class: All columns in discharge Entity
     """
     queryset = Discharge.objects.all()
     serializer_class = DischargeSerializer
@@ -45,8 +45,8 @@ class DischargeDetailView(generics.RetrieveUpdateDestroyAPIView):
        GET: Retrieves specific discharge record
        PUT and PATCH: update discharge record
        DELETE: delete/destroy specific discharge record
-       queryset: all column in discharge Entity
-       serializer_class: All rows in discharge Entity
+       queryset: specific row in discharge Entity
+       serializer_class: All columns in specific discharge Entity
     """
     queryset = Discharge.objects.all()
     serializer_class = DischargeSerializer
@@ -54,7 +54,7 @@ class DischargeDetailView(generics.RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail="Discharge record not found with the provided ID.", code=404)
+            raise NotFound(detail=Error_Response(error="DischargeNotFound", message="Discharge"), code=404)
     
     # GET
     def retrieve(self, request, *args, **kwargs):

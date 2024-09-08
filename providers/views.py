@@ -3,6 +3,7 @@ from django.shortcuts import render
 # from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from services.error_response import Error_Response
 from services.provider_services import *
 from rest_framework import generics
 from rest_framework.exceptions import NotFound
@@ -12,8 +13,8 @@ class AllProvidersView(generics.ListCreateAPIView):
         """
         GET: Retrieves all provider record
         POST: Add new provider record
-        queryset: All column in Provider Entity
-        serializer_class: All rows in provider Entity
+        queryset: All rows in Provider Entity
+        serializer_class: All columns in provider Entity
         """
         queryset = Provider.objects.all()
         serializer_class = ProviderSerializer
@@ -24,6 +25,7 @@ class AllProvidersView(generics.ListCreateAPIView):
             return Response(All_Provider_Response_data(
                 queryset = queryset.count(), 
                 provider = serializer.data),
+                status = status.HTTP_200_OK,
             )
 
         # POST
@@ -32,8 +34,7 @@ class AllProvidersView(generics.ListCreateAPIView):
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             return Response(Create_Provider_Response_data(
-                provider = serializer.data,
-                headers = self.get_success_headers(serializer.data),      
+                provider = serializer.data,     
             ), status = status.HTTP_201_CREATED)
        
 class ProviderDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -41,8 +42,8 @@ class ProviderDetailView(generics.RetrieveUpdateDestroyAPIView):
        GET: Retrieves specific provider record
        PUT and PATCH: update provider record
        DELETE: delete specific provider record
-       queryset: all column in Provider Entity
-       serializer_class: all rows provider Entity
+       queryset: all rows in Provider Entity
+       serializer_class: all columns in provider Entity
     """
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer
@@ -50,7 +51,7 @@ class ProviderDetailView(generics.RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail="Provider not found with the provided ID.", code=404)
+            raise NotFound(detail=Error_Response(error="ProviderNotFound", message="Provider"), code=404)
        
     # def check_permissions(self, request):
     #     if not request.user.has_perm('patients.change_Patient'):

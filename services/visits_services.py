@@ -17,7 +17,7 @@ def All_Visit_Response_data(visit, queryset):
     }
     return data
 
-def Create_Visit_Response_data(visit, headers):
+def Create_Visit_Response_data(visit):
     """Response Data for POST request i.e create new visit record"""
     data = {
         "status": "success",
@@ -25,8 +25,7 @@ def Create_Visit_Response_data(visit, headers):
         "message": "Visit record added successfully.",
         "visits": visit,
     }
-    header = headers
-    return (data, header)
+    return data
 
 def Retrieve_Visit_Response_data(visit):
     """Response Data for GET request i.e single visit record"""

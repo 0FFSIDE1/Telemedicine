@@ -3,6 +3,7 @@ from django.shortcuts import render
 # from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from services.error_response import Error_Response
 from services.visits_services import *
 from visits.models import Visit
 from rest_framework import generics
@@ -13,8 +14,8 @@ class AllVisitsView(generics.ListCreateAPIView):
     """
        GET: Retrieves all visits record
        POST: Add new visit record
-       queryset: All column in visit Entity
-       serializer_class: All rows in visit Entity
+       queryset: All rows in visit Entity
+       serializer_class: All columns in visit Entity
     """
     queryset = Visit.objects.all()
     serializer_class = VisitSerializer
@@ -26,6 +27,7 @@ class AllVisitsView(generics.ListCreateAPIView):
         return Response(All_Visit_Response_data(
             queryset=queryset.count(), 
             visit=serializer.data),
+            status = status.HTTP_200_OK,
         )
     
     # POST
@@ -34,8 +36,7 @@ class AllVisitsView(generics.ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(Create_Visit_Response_data(
-            visit = serializer.data,
-            headers = self.get_success_headers(serializer.data),      
+            visit = serializer.data,     
         ), status = status.HTTP_201_CREATED)
     
     
@@ -53,7 +54,7 @@ class VisitDetailView(generics.RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail="Visit record not found with the provided ID.", code=404)
+            raise NotFound(detail=Error_Response(error="VisitNotFound", message="Visit"), code=404)
     
     # GET
     def retrieve(self, request, *args, **kwargs):

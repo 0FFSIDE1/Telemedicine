@@ -8,13 +8,15 @@ from ed_visits.models import Ed_visit
 from rest_framework import generics
 from rest_framework.exceptions import NotFound
 
+from services.error_response import Error_Response
+
 # Create your views here.
 class AllEd_visitsView(generics.ListCreateAPIView):
     """
        GET: Retrieves all ed_visits record
        POST: Add new ed_visits record
-       queryset: All column in ed_visits Entity
-       serializer_class: All rows in ed_visits Entity
+       queryset: All rows in ed_visits Entity
+       serializer_class: All columns in ed_visits Entity
     """
     queryset = Ed_visit.objects.all()
     serializer_class = Ed_visitsSerializer
@@ -35,8 +37,7 @@ class AllEd_visitsView(generics.ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(Create_Ed_visits_Response_data(
-            ed_visit = serializer.data,
-            headers = self.get_success_headers(serializer.data),      
+            ed_visit = serializer.data,      
         ), status = status.HTTP_201_CREATED)
     
     
@@ -45,8 +46,8 @@ class Ed_visitsDetailView(generics.RetrieveUpdateDestroyAPIView):
        GET: Retrieves specific ed_visits record
        PUT and PATCH: update ed_visit record
        DELETE: delete/destroy specific ed_visit record
-       queryset: all column in ed_visit Entity
-       serializer_class: All rows in ed_visits Entity
+       queryset: specific row in ed_visit Entity
+       serializer_class: All columns in ed_visits Entity
     """
     queryset = Ed_visit.objects.all()
     serializer_class = Ed_visitsSerializer
@@ -54,7 +55,7 @@ class Ed_visitsDetailView(generics.RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail="Ed_visits record not found with the provided ID.", code=404)
+            raise NotFound(detail=Error_Response(error="Ed_visitsNotFound", message="ed_visit"), code=404)
     
     # GET
     def retrieve(self, request, *args, **kwargs):

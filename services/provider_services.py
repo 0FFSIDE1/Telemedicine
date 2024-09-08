@@ -22,7 +22,7 @@ def All_Provider_Response_data(provider, queryset):
     }
     return data
 
-def Create_Provider_Response_data(provider, headers):
+def Create_Provider_Response_data(provider):
     """Response Data for POST request i.e create new provider record"""
     data = {
         "status": "success",
@@ -30,8 +30,7 @@ def Create_Provider_Response_data(provider, headers):
         "message": "provider record added successfully.",
         "provider": provider,
     }
-    header = headers
-    return (data, header)
+    return data
 
 def Retrieve_Provider_Response_data(provider):
     """Response Data for GET request i.e single provider record"""

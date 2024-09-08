@@ -17,7 +17,7 @@ def All_admission_Response_data(admission, queryset):
     }
     return data
 
-def Create_admission_Response_data(admission, headers):
+def Create_admission_Response_data(admission):
     """Response Data for POST request i.e create new admission record"""
     data = {
         "status": "success",
@@ -25,8 +25,8 @@ def Create_admission_Response_data(admission, headers):
         "message": "admission record added successfully.",
         "admission": admission,
     }
-    header = headers
-    return (data, header)
+    
+    return data
 
 def Retrieve_admission_Response_data(admission):
     """Response Data for GET request i.e single admission record"""

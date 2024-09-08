@@ -14,8 +14,8 @@ class AllAdmissionView(generics.ListCreateAPIView):
     """
        GET: Retrieves all Admission record
        POST: Add new Admission record
-       queryset: All column in Admission Entity
-       serializer_class: All rows in Admission Entity
+       queryset: All rows in Admission Entity
+       serializer_class: All columns in Admission Entity
     """
     queryset = Admission.objects.all()
     serializer_class = AdmissionSerializer
@@ -26,6 +26,7 @@ class AllAdmissionView(generics.ListCreateAPIView):
         return Response(All_admission_Response_data(
             queryset = queryset.count(), 
             admission = serializer.data),
+            status = status.HTTP_200_OK,
         )
     
     # POST
@@ -43,8 +44,8 @@ class AdmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
        GET: Retrieves specific admission record
        PUT and PATCH: update specific admission record
        DELETE: delete specific admission record
-       queryset: all column in admission Entity
-       serializer_class: All rows in Admission Entity
+       queryset: all rows in admission Entity
+       serializer_class: All columns in Admission Entity
     """
     queryset = Admission.objects.all()
     serializer_class = AdmissionSerializer
@@ -52,7 +53,7 @@ class AdmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail=Error_Response, code=404)
+            raise NotFound(detail=Error_Response(error="AdmissisonNotFound", message="Admission"), code=404)
     
     # GET
     def retrieve(self, request, *args, **kwargs):

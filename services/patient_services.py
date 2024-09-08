@@ -22,7 +22,7 @@ def All_Patient_Response_data(patient, queryset):
     }
     return data
 
-def Create_Patient_Response_data(patient, headers):
+def Create_Patient_Response_data(patient):
     """Response Data for POST request i.e create new patient record"""
     data = {
         "status": "success",
@@ -30,8 +30,8 @@ def Create_Patient_Response_data(patient, headers):
         "message": "Patient record added successfully.",
         "patient": patient,
     }
-    header = headers
-    return (data, header)
+    
+    return data
 
 def Retrieve_Patient_Response_data(patient):
     """Response Data for GET request i.e single patient record"""
