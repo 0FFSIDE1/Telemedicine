@@ -4,6 +4,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from services.admission_services import *
+from services.error_response import Error_Response
 from admissions.models import Admission
 from rest_framework import generics
 from rest_framework.exceptions import NotFound
@@ -33,8 +34,7 @@ class AllAdmissionView(generics.ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(Create_admission_Response_data(
-            admission = serializer.data,
-            headers = self.get_success_headers(serializer.data),      
+            admission = serializer.data,      
         ), status = status.HTTP_201_CREATED)
     
     
@@ -52,7 +52,7 @@ class AdmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail="Admission record not found with the provided ID.", code=404)
+            raise NotFound(detail=Error_Response, code=404)
     
     # GET
     def retrieve(self, request, *args, **kwargs):

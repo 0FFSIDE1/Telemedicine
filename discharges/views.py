@@ -4,6 +4,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from services.discharge_services import *
+from services.error_response import Error_Response
 from discharges.models import Discharge
 from rest_framework import generics
 from rest_framework.exceptions import NotFound
@@ -35,8 +36,7 @@ class AllDischargeView(generics.ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(Create_Discharge_Response_data(
-            discharge = serializer.data,
-            headers = self.get_success_headers(serializer.data),      
+            discharge = serializer.data,      
         ), status = status.HTTP_201_CREATED)
     
     
